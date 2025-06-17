@@ -95,6 +95,11 @@ A small Python GUI is provided to make running the diagnostic script easier for 
 python3 test_gui.py
 ```
 
+If the command fails with `ModuleNotFoundError: No module named '_tkinter'`,
+your Python installation was built without Tk support. Install the `tcl-tk`
+package (e.g. with Homebrew on macOS: `brew install tcl-tk`) and reinstall
+Python so that Tkinter is available.
+
 On Windows systems, click **Run Diagnostic** to execute the bundled
 `Generate BG3 Diagnostic.bat` script. The diagnostic report will appear in your
 `%TEMP%` folder as `BG3 Diagnostic Data.txt`.
