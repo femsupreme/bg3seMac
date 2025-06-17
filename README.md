@@ -7,33 +7,40 @@ The Script Extender adds Lua/Osiris scripting support to the game.
 
 ### macOS Sequoia 15.5 Support
 
-Experimental support for macOS is provided via a minimal stub library. To build
-the stub on macOS 15.5 or newer run the following commands:
+macOS support is currently experimental and provided through a lightweight
+stub library. Ensure the Xcode command line tools and `cmake` are installed on
+your system.
 
-```bash
-mkdir build && cd build
-cmake ..
-make
-```
+#### Building the stub
 
-This will produce `libbg3se.dylib`, which currently only prints a message at
-runtime indicating that the full Script Extender functionality is not available
-yet on macOS.
+1. Open **Terminal**.
+2. Create a build directory and compile the project:
 
-### Installing on macOS
+   ```bash
+   mkdir build && cd build
+   cmake ..
+   make
+   ```
 
-The generated library can be loaded with `DYLD_INSERT_LIBRARIES` when starting
-the game. For example:
+This process generates `libbg3se.dylib`. When loaded, the library simply prints
+a message noting that full Script Extender functionality is not yet available
+on macOS.
+
+#### Installing and testing
+
+The library can be injected with `DYLD_INSERT_LIBRARIES` when starting the
+game. Example:
 
 ```bash
 DYLD_INSERT_LIBRARIES=/path/to/libbg3se.dylib \
     open "/Applications/Baldur's Gate 3.app"
 ```
 
-Placing `libbg3se.dylib` in `Baldur's Gate 3.app/Contents/MacOS/` is a
-convenient location to reference from the environment variable. The stub does
-not provide any Script Extender features yet but allows testing of the loading
-mechanism.
+Copying `libbg3se.dylib` into `Baldur's Gate 3.app/Contents/MacOS/` keeps the
+environment variable short. If the stub loads correctly, a console message will
+appear when the game launches, confirming that the injection succeeded.
+The stub does not yet provide Script Extender features but verifies that the
+loading mechanism works on your system.
 
 ### Configuration
 
