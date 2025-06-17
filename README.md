@@ -68,3 +68,20 @@ The following configuration variables can be set in the `ScriptExtenderSettings.
 ### Build Instructions
 
 Download the latest [external dependencies from here](https://nb-stor.s3.eu-central-1.amazonaws.com/bg3-legacy/External.7z) and extract them to the `External/` folder.
+
+### Testing with the GUI
+
+A small Python GUI is provided to make running the diagnostic script easier for end users.
+
+1. Ensure you have Python 3 installed.
+2. Run the GUI from the `TestGUI` folder:
+
+```bash
+python3 test_gui.py
+```
+
+On Windows systems, click **Run Diagnostic** to execute the bundled
+`Generate BG3 Diagnostic.bat` script. The diagnostic report will appear in your
+`%TEMP%` folder as `BG3 Diagnostic Data.txt`.
+
+On non‑Windows systems a message will indicate that the script is not available.
