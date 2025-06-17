@@ -5,6 +5,36 @@
 The Script Extender adds Lua/Osiris scripting support to the game.
 [API Documentation](https://github.com/Norbyte/bg3se/blob/master/Docs/API.md)
 
+### macOS Sequoia 15.5 Support
+
+Experimental support for macOS is provided via a minimal stub library. To build
+the stub on macOS 15.5 or newer run the following commands:
+
+```bash
+mkdir build && cd build
+cmake ..
+make
+```
+
+This will produce `libbg3se.dylib`, which currently only prints a message at
+runtime indicating that the full Script Extender functionality is not available
+yet on macOS.
+
+### Installing on macOS
+
+The generated library can be loaded with `DYLD_INSERT_LIBRARIES` when starting
+the game. For example:
+
+```bash
+DYLD_INSERT_LIBRARIES=/path/to/libbg3se.dylib \
+    open "/Applications/Baldur's Gate 3.app"
+```
+
+Placing `libbg3se.dylib` in `Baldur's Gate 3.app/Contents/MacOS/` is a
+convenient location to reference from the environment variable. The stub does
+not provide any Script Extender features yet but allows testing of the loading
+mechanism.
+
 ### Configuration
 
 The following configuration variables can be set in the `ScriptExtenderSettings.json` file:
