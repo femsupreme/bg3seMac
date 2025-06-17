@@ -5,26 +5,37 @@ import tkinter as tk
 from tkinter import messagebox
 
 
-SCRIPT_PATH = os.path.abspath(
-    os.path.join(os.path.dirname(__file__), os.pardir, "Generate BG3 Diagnostic.bat")
-)
+BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), os.pardir))
+WINDOWS_SCRIPT_PATH = os.path.join(BASE_DIR, "Generate BG3 Diagnostic.bat")
+MAC_SCRIPT_PATH = os.path.join(BASE_DIR, "Generate BG3 Diagnostic.sh")
 
 
 def run_diagnostic():
-    if platform.system() != "Windows":
+    system = platform.system()
+
+    if system == "Windows":
+        script = WINDOWS_SCRIPT_PATH
+        cmd = ["cmd", "/c", script]
+        out_dir = os.getenv("TEMP", os.getcwd())
+    elif system == "Darwin":
+        script = MAC_SCRIPT_PATH
+        cmd = ["bash", script]
+        out_dir = os.getenv("TMPDIR", "/tmp")
+    else:
         messagebox.showinfo(
             "Unsupported",
-            "Diagnostic script is only available on Windows.",
+            "Diagnostic script is only available on Windows or macOS.",
         )
         return
-    if not os.path.exists(SCRIPT_PATH):
-        messagebox.showerror("Error", f"Script not found: {SCRIPT_PATH}")
+
+    if not os.path.exists(script):
+        messagebox.showerror("Error", f"Script not found: {script}")
         return
     try:
-        subprocess.run(["cmd", "/c", SCRIPT_PATH], check=True)
+        subprocess.run(cmd, check=True)
         messagebox.showinfo(
             "Finished",
-            "Diagnostic completed. Check your TEMP folder for 'BG3 Diagnostic Data.txt'.",
+            f"Diagnostic completed. Check {out_dir} for 'BG3 Diagnostic Data.txt'.",
         )
     except subprocess.CalledProcessError:
         messagebox.showerror("Error", "Diagnostic script failed.")

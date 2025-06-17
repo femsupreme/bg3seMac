@@ -84,4 +84,7 @@ On Windows systems, click **Run Diagnostic** to execute the bundled
 `Generate BG3 Diagnostic.bat` script. The diagnostic report will appear in your
 `%TEMP%` folder as `BG3 Diagnostic Data.txt`.
 
-On non‑Windows systems a message will indicate that the script is not available.
+On macOS the GUI runs the `Generate BG3 Diagnostic.sh` script and writes the
+report to your `$TMPDIR` directory.
+
+On other systems a message will indicate that the script is not available.
