@@ -42,6 +42,21 @@ appear when the game launches, confirming that the injection succeeded.
 The stub does not yet provide Script Extender features but verifies that the
 loading mechanism works on your system.
 
+#### Creating an installer
+
+To simplify distribution a helper script is provided that builds the stub and
+packages it into a standard `.pkg` installer. Running the script will generate
+`bg3se_stub_installer.pkg` in the repository root. When executed, the installer
+copies `libbg3se.dylib` into `Baldur's Gate 3.app/Contents/MacOS/`.
+
+```bash
+macos/create_stub_installer.sh
+open bg3se_stub_installer.pkg
+```
+
+This allows installing the stub without using the terminal beyond launching the
+script.
+
 ### Configuration
 
 The following configuration variables can be set in the `ScriptExtenderSettings.json` file:
