@@ -5,6 +5,21 @@
 The Script Extender adds Lua/Osiris scripting support to the game.
 [API Documentation](https://github.com/Norbyte/bg3se/blob/master/Docs/API.md)
 
+### macOS Sequoia 15.5 Support
+
+Experimental support for macOS is provided via a minimal stub library. To build
+the stub on macOS 15.5 or newer run the following commands:
+
+```bash
+mkdir build && cd build
+cmake ..
+make
+```
+
+This will produce `libbg3se.dylib`, which currently only prints a message at
+runtime indicating that the full Script Extender functionality is not available
+yet on macOS.
+
 ### Configuration
 
 The following configuration variables can be set in the `ScriptExtenderSettings.json` file:
