@@ -2,12 +2,21 @@
 
 #include "targetver.h"
 
+#ifdef _WIN32
 #define WIN32_LEAN_AND_MEAN // Exclude rarely-used stuff from Windows headers
 #define NOMINMAX
 
-// Windows Header Files:
+// Windows Header Files
 #include <windows.h>
 #include <detours.h>
+#elif defined(__APPLE__)
+// macOS specific includes
+#include <TargetConditionals.h>
+// Detours is Windows only; placeholder for macOS hooking library if needed
+#define DETOURS_STUB 1
+#else
+#error "Unsupported platform"
+#endif
 
 #include <memory>
 #include <cstdint>

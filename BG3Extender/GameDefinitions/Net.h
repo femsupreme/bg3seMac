@@ -1,6 +1,10 @@
 #pragma once
 
+#ifdef _WIN32
 #include <windows.h>
+#elif defined(__APPLE__)
+#include <CoreFoundation/CoreFoundation.h>
+#endif
 #include <GameDefinitions/Base/Base.h>
 #include <GameDefinitions/Enumerations.h>
 // Temporarily, for ComponentCallbakcList
